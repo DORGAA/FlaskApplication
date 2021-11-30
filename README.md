@@ -1,0 +1,2 @@
+# FlaskApplication
+Python | Flask | SQLALchemy

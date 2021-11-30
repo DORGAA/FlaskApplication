@@ -12,6 +12,9 @@ def create_app(config_name):
     from app.login import login as login_blueprint
     app.register_blueprint(login_blueprint, title='login')
 
+    from app.singup import register as register_blueprint
+    app.register_blueprint(register_blueprint, title='SingUp')
+
     return app
 
 

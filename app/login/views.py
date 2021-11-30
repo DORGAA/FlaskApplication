@@ -1,5 +1,5 @@
 from . import login
-from flask import render_template, request
+from flask import render_template
 from .forms import LoginForm
 
 

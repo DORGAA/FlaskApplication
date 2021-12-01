@@ -1,0 +1,25 @@
+{% block title %}Dashboard{% endblock %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block body %}
+    {% block content %}
+        <form class="dashboard-form" action="/register" method="post">
+
+            <div class="form-header">
+            </div>
+            
+        </form>
+
+    <br/> <br/> <br/>
+
+    <ul>
+        <li>   {{user_info.firstname}} </li>
+        <li>   {{user_info.lastname}}  </li>
+        <li>   {{user_info.email}}  </li>
+    </ul>
+
+    {% endblock %}
+{% endblock %}

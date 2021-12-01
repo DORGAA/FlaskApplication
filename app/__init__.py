@@ -29,6 +29,9 @@ app.register_blueprint(login_blueprint)
 from .singup import register as register_blueprint
 app.register_blueprint(register_blueprint)
 
+from .dashboard import dash as dash_blueprint
+app.register_blueprint(dash_blueprint)
+
 
 
 from app.models import User

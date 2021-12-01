@@ -1,7 +1,14 @@
-from app import db
+from app import db, logManager
+from flask_login import UserMixin
 
 
-class User(db.Model):
+# Set up user_loader
+@logManager.user_loader
+def load_user(ident):
+    return User.query.get(int(ident))
+
+
+class User(db.Model, UserMixin):
     """
     Adding id(primary key)
     ensures that email set is unique
@@ -14,6 +21,5 @@ class User(db.Model):
 
     def __repr__(self):
         return '<User: {}>'.format(self.email)
-
 
 

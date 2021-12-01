@@ -2,6 +2,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from os import environ
 from flask_bootstrap import Bootstrap
+from flask_bcrypt import Bcrypt
 
 
 app = Flask(__name__)
@@ -12,6 +13,8 @@ db = SQLAlchemy(app)
 Bootstrap(app)
 db.init_app(app)
 db.create_all()
+hash = Bcrypt(app)
+
 
 from .login import login as login_blueprint
 app.register_blueprint(login_blueprint)

@@ -3,4 +3,4 @@ Flask-Bootstrap==3.3.7.1
 WTForms==2.2.1
 Flask-WTF==0.14.2
 werkzeug==0.16.1
-
+Flask-SQLAlchemy==2.5.1

@@ -1,21 +1,24 @@
 from flask import Flask
-from config import appConfig
+from flask_sqlalchemy import SQLAlchemy
+from os import environ
 from flask_bootstrap import Bootstrap
 
 
-def create_app(config_name):
-    app = Flask(__name__, instance_relative_config=True)
-    app.config.from_object(appConfig[config_name])
-    app.config.from_pyfile('config.py')
+app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
+app.config['SECRET_KEY'] = environ.get('SECRET_KEY')
+db = SQLAlchemy(app)
 
-    Bootstrap(app)
-    from app.login import login as login_blueprint
-    app.register_blueprint(login_blueprint, title='login')
+Bootstrap(app)
+db.init_app(app)
+db.create_all()
 
-    from app.singup import register as register_blueprint
-    app.register_blueprint(register_blueprint, title='SingUp')
+from .login import login as login_blueprint
+app.register_blueprint(login_blueprint)
 
-    return app
+from .singup import register as register_blueprint
+app.register_blueprint(register_blueprint)
 
 
 
+from app.models import User

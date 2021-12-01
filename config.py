@@ -18,13 +18,15 @@ class TestConfig():
     """
     Testing configs
     """
+    TESTING = True
 
 
 appConfig = {
 
     'development': DevConfig,
     'production': ProdConfig,
-    'Testing': TestConfig
+    'Testing': TestConfig,
+    'default': DevConfig
 
 }
 

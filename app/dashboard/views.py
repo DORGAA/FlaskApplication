@@ -1,6 +1,6 @@
 from . import dash
 from flask_login import login_required, current_user
-from flask import render_template, request
+from flask import render_template, request, redirect, url_for, flash
 from .forms import DashboardForm
 from app.models import User
 
@@ -9,7 +9,22 @@ from app.models import User
 @login_required
 def dashboard():
     form = DashboardForm()
-    if request.method == 'GET':
-        user_info = User.query.filter_by(id=current_user.id).first()
 
-    return render_template("/dashboard.html", user_info=user_info)
+    # Querystring data on User
+    user_info = User.query.filter_by(id=current_user.id).first()
+    all_info = User.query.all()
+
+    if request.method == 'POST' and form.validate_on_submit():
+        if form.user_data.data:
+
+            flash(user_info)
+
+
+        elif form.all_data.data:
+
+            flash(all_info)
+
+        else:
+            print('nothing')
+
+    return render_template("/dashboard.html", form=form)

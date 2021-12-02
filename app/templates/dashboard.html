@@ -1,25 +1,44 @@
 {% block title %}Dashboard{% endblock %}
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
 
-{% block head %}
 
-{% endblock %}
+{% block head %} {% endblock %}
 
 {% block body %}
     {% block content %}
-        <form class="dashboard-form" action="/register" method="post">
+
+        <div class="form-body">
+            <a href="{{url_for('logout.logout')}}">> Log out </a>
+        </div>
+
+        <form class="dashboard-form" action="{{ url_for('dashboard.dashboard') }}" method="post">
 
             <div class="form-header">
             </div>
-            
+
+                {{ form.hidden_tag() }}
+                {{wtf.form_field(form.user_data)}}
+                {{wtf.form_field(form.all_data)}}
+
+                <br/>
+
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        <ul class=flashes>
+                        {% for message in messages %}
+
+                            <li> Name : {{ message.firstname }}</li>
+                            <li> last Name : {{ message.lastname }}</li>
+                            <li> Email : {{message.email}}</li>
+
+                         {% endfor %}
+                        </ul>
+                        <button type="submit"></button>
+                    {% endif %}
+                {% endwith %}
+
         </form>
-
-    <br/> <br/> <br/>
-
-    <ul>
-        <li>   {{user_info.firstname}} </li>
-        <li>   {{user_info.lastname}}  </li>
-        <li>   {{user_info.email}}  </li>
-    </ul>
 
     {% endblock %}
 {% endblock %}

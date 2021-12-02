@@ -1,2 +1,2 @@
 # FlaskApplication
-Python | Flask | SQLALchemy
+Python |  Flask | SQLALchemy

@@ -1,5 +1,5 @@
 from . import login, logout
-from flask import render_template, request, redirect, url_for
+from flask import render_template, request, redirect, url_for,flash
 from flask_login import login_required
 from .forms import LoginForm
 from app.models import User
@@ -17,7 +17,8 @@ def login():
             login_user(new_user)
             return redirect(url_for('dashboard.dashboard'))
         else:
-            return redirect(url_for('login_out.login_out'))
+            flash('Wrong adress mail or password')
+            return render_template("/login.html", form=form)
     return render_template("/login.html", form=form)
 
 

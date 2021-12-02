@@ -1,44 +1,51 @@
-{% block title %}Dashboard{% endblock %}
-{% extends "bootstrap/base.html" %}
+{% extends "base.html" %}
 {% import "bootstrap/wtf.html" as wtf %}
 
-
-{% block head %} {% endblock %}
+{% block head %}
+    {% block title %}{% endblock %}
+{% endblock %}
 
 {% block body %}
     {% block content %}
 
-        <div class="form-body">
-            <a href="{{url_for('logout.logout')}}">> Log out </a>
+        <div class="card">
+             <div class="card-header" style="font-family: serif;">
+                 Hello {{current_user.firstname}}, Your personnel informations :
+                 <button type="button" class="btn btn-outline-danger"> <a href="{{url_for('logout.logout')}}"> Exit </a></button>
+             </div>
+            <div class="card-body">
+                <blockquote class="blockquote mb-0">
+
+                    <div class="test">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item" style="font-family: serif;"><strong>Name : </strong> {{ current_user.firstname }}  </li>
+                            <li class="list-group-item" style="font-family: serif;"><strong>last name :  </strong> {{ current_user.lastname }} </li>
+                            <li class="list-group-item" style="font-family: serif;"><strong>email : </strong> {{ current_user.email }} </li>
+                        </ul>
+                    </div>
+
+                </blockquote>
+            </div>
         </div>
 
-        <form class="dashboard-form" action="{{ url_for('dashboard.dashboard') }}" method="post">
-
-            <div class="form-header">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title" style="font-family: serif;">Want to update your profil ? </h5>
+                        <a href="/update/{{current_user.id}}" class="btn btn-primary" style="font-family: serif;">Go somewhere</a>
+                    </div>
+                </div>
             </div>
-
-                {{ form.hidden_tag() }}
-                {{wtf.form_field(form.user_data)}}
-                {{wtf.form_field(form.all_data)}}
-
-                <br/>
-
-                {% with messages = get_flashed_messages() %}
-                    {% if messages %}
-                        <ul class=flashes>
-                        {% for message in messages %}
-
-                            <li> Name : {{ message.firstname }}</li>
-                            <li> last Name : {{ message.lastname }}</li>
-                            <li> Email : {{message.email}}</li>
-
-                         {% endfor %}
-                        </ul>
-                        <button type="submit"></button>
-                    {% endif %}
-                {% endwith %}
-
-        </form>
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">See all of our users </h5>
+                        <a href="/data" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     {% endblock %}
 {% endblock %}

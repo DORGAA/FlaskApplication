@@ -1,5 +1,5 @@
 from . import register
-from flask import render_template
+from flask import render_template, flash
 from .forms import RegisterFrom
 from app.models import User
 from app import hash, db

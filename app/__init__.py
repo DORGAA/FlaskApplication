@@ -1,29 +1,21 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from os import environ
+import os
 from flask_bootstrap import Bootstrap
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
-from flask_limiter import Limiter
-from flask_limiter.util import get_remote_address
 
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
-app.config['SECRET_KEY'] = '1234' #environ.get('SECRET_KEY')
-db = SQLAlchemy(app)
+Env_config = os.environ['MYAPP_CONFIG']
+app.config.from_object(Env_config)
 
+
+db = SQLAlchemy(app)
 Bootstrap(app)
 db.init_app(app)
 db.create_all()
 hash = Bcrypt(app)
-
-
-# every time we request a route based on a specific ip address,
-# flask limiter catch that ip address  from get_remote_address
-# and compare (key_func return String) it to the list of ip address in the memory
-limiter = Limiter(app, key_func=get_remote_address)
-endpoint_limit = limiter.shared_limit("3/day", scope='limiter')
 
 
 # Combination of app and flask_login
@@ -47,6 +39,10 @@ app.register_blueprint(logout_blueprint)
 from .limiter import testlimiter as testlimiter_blueprint
 app.register_blueprint(testlimiter_blueprint)
 
+from .update import update as update_blueprint
+app.register_blueprint(update_blueprint)
 
+from .dataDisplay import display as display_blueprint
+app.register_blueprint(display_blueprint)
 
 from app.models import User

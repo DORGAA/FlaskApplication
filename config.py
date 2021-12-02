@@ -1,23 +1,25 @@
+from os import environ
 
 
-class DevConfig():
-    """
-    Developement configs
-    """
+class Config(object):
+
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///data.db'
+    SECRET_KEY = environ.get('SECRET_KEY')
+
+
+class DevConfig(Config):
+
     DEBUG = True
 
 
-class ProdConfig():
-    """
-    Production configs
-    """
+class ProdConfig(Config):
+
     DEBUG = False
 
 
-class TestConfig():
-    """
-    Testing configs
-    """
+class TestConfig(Config):
+
     TESTING = True
 
 

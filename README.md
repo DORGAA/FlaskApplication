@@ -1,8 +1,8 @@
 # FlaskApplication
 Basic  flask application for managing users
 
-
 ![github-small](https://user-images.githubusercontent.com/32481242/144520537-cdeb67f0-f68b-4021-b937-bd1cdcca1052.png)
+
 
 
 # STACK INFORMATION 
@@ -34,17 +34,14 @@ In your terminal go to the app folder /app and set Environment variable configs 
  * SQLALCHEMY_DATABASE_URI
  * SQLALCHEMY_TRACK_MODIFICATIONS 
  
-```
-export CONFIGURATION_SETUP="config.DevConfig"
-```
 
 ```
-export CONFIGURATION_SETUP="config.DevConfig"
+export MYAPP_CONFIG="config.DevConfig"
 ```
 set application secret key: 
 
 ```
-export SECRET_KEY="Chosse a secret key"
+export SECRET_KEY="ChooseAsecretKey"
 ```
 run app: 
 

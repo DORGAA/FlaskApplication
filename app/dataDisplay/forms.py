@@ -4,5 +4,5 @@ from wtforms import SubmitField
 
 class UserData(FlaskForm):
 
-    submit = SubmitField(label='Send')
+    submit = SubmitField(label='Back')
 

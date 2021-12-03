@@ -53,6 +53,8 @@ In your terminal go to the app folder /app and set Environment variable configs 
  
 
 ```
+export FLASK_APP=run.py
+
 export MYAPP_CONFIG="config.DevConfig"
 ```
 set application secret key: 
@@ -60,6 +62,9 @@ set application secret key:
 ```
 export SECRET_KEY="ChooseAsecretKey"
 ```
+
+export FLASK_APP=hello.py
+
 run app: 
 
 ```

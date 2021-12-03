@@ -27,6 +27,23 @@ Clone the repository:
 ```
 git clone https://github.com/DORGAA/FlaskApplication.git
 ```
+Set up a Virtualenv environment (or alternatively use conda ):
+
+```
+cd /FlaskApplication
+Virtualenv .env
+source .env/bin/activate
+pip install requirements.txt
+```
+
+Initialise the sqlite database:
+
+```
+cd /app
+python3
+from app import db
+db.create_all()
+```
 
 In your terminal go to the app folder /app and set Environment variable configs as :
 

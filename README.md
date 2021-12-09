@@ -34,17 +34,7 @@ cd /FlaskApplication
 Virtualenv .env
 source .env/bin/activate
 pip install requirements.txt
-```
-
-Initialise the sqlite database:
-
-```
-cd /app
-python3
-from app import db
-db.create_all()
-```
-
+`
 In your terminal go to the app folder /app and set Environment variable configs as :
 
  * SECRET_KEY 
@@ -61,12 +51,23 @@ set application secret key:
 
 ```
 export SECRET_KEY="ChooseAsecretKey"
-```
+`````
 
-export FLASK_APP=hello.py
 
 run app: 
 
 ```
 flask run 
 ```
+# Further development notes
+
+Initialise the sqlite database:
+
+```
+cd /app
+python3
+from app import db
+db.create_all()
+```
+
+

@@ -33,8 +33,9 @@ Set up a Virtualenv environment (or alternatively use conda ):
 cd /FlaskApplication
 Virtualenv .env
 source .env/bin/activate
-pip install requirements.txt
-`
+pip install -r requirements.txt
+```
+
 In your terminal go to the app folder /app and set Environment variable configs as :
 
  * SECRET_KEY 
@@ -44,9 +45,13 @@ In your terminal go to the app folder /app and set Environment variable configs 
 
 ```
 export FLASK_APP=run.py
+```
 
+Set set environment varible 
+```
 export MYAPP_CONFIG="config.DevConfig"
 ```
+
 set application secret key: 
 
 ```
@@ -59,6 +64,7 @@ run app:
 ```
 flask run 
 ```
+
 # Further development notes
 
 Initialise the sqlite database:
